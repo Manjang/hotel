@@ -43,7 +43,7 @@
 <body>
 	<header class="main-header">
 		<div class="header-container">
-			<a href="#" class="logo"><img src="assets/images/hotel-logo.png" alt="logo"></a>
+			<a href="{{ url('/') }}" class="logo"><img src="assets/images/hotel-logo.png" alt="logo"></a>
 
 			<ul class="main-header--left">
 				<li class="main-header--left-item">

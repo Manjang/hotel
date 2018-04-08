@@ -69,6 +69,9 @@ class GalleriesController extends Controller
     public function show(Gallery $gallery)
     {
         //
+        // $gallery = Gallery::find($gallery->id);
+
+        // return view('galleries.show', ['gallery'=>$gallery]);
     }
 
     /**
@@ -80,6 +83,9 @@ class GalleriesController extends Controller
     public function edit(Gallery $gallery)
     {
         //
+        $gallery = Gallery::find($gallery->id);
+
+        return view('galleries.edit', ['gallery'=>$gallery]);
     }
 
     /**
@@ -92,6 +98,20 @@ class GalleriesController extends Controller
     public function update(Request $request, Gallery $gallery)
     {
         //
+        $galleryUpdate = Gallery::where('id', $gallery->id)
+                            ->update([
+                                'name' => $request->file('name')->store('upload', 'public'),
+                                'hotel_id'=>$request->input('hotel_id'),
+                                'user_id' => Auth::user()->id,
+                            ]);
+
+        if($galleryUpdate) {
+            return redirect()->route('galleries.show', ['gallery'=> $gallery->id])
+            ->with('success', 'Gallery updated successfully');
+        }
+
+        //redirect
+        return back()->withInput();
     }
 
     /**

@@ -12,6 +12,8 @@
 */
 
 
+Route::get('/search', 'SearchController@index');
+
 Route::get('/', 'HotelsController@index');
 
 Auth::routes();

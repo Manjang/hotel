@@ -47,7 +47,7 @@
 <body class="home">
 	<header class="main-header">
         <div class="header-container">
-            <a href="#" class="logo"><img src="{{ URL('upload/hotel-logo.png') }}" alt="logo"></a>
+            <a href="{{ url('/') }}" class="logo"><img src="{{ URL('upload/hotel-logo.png') }}" alt="logo"></a>
 
             <ul class="main-header--left">
                 <li class="main-header--left-item">
@@ -114,7 +114,7 @@
 		</video>
 
 		<div class="hero-overlay">
-			<a href="#" class="logo"><img src="{{ URL('upload/bordered-logo.png') }}" alt="logo"></a>
+			<a href="{{ url('/') }}" class="logo"><img src="{{ URL('upload/bordered-logo.png') }}" alt="logo"></a>
 
 			<h2 class="tagline">Let's find your next stay in The Gambia</h2>
 
@@ -123,9 +123,9 @@
 			</div>
 
 			<div class="search-form container">
-				<form method="GET" action="search.html">
-					<input maxlength="100" name="searchHotel" id="searchHotel" placeholder="search hotel by name" type="text">
-					<button class="search-btn"><img src="{{ URL('upload/search.svg') }}"></button>
+				<form method="GET" action="/search">
+					<input maxlength="100" name="q" id="searchHotel" placeholder="search hotel by name" value="{{ Request::get('q') }}" type="text">
+					<button type="submit" class="search-btn"><img src="{{ URL('upload/search.svg') }}"></button>
 				</form>
 			</div>
 

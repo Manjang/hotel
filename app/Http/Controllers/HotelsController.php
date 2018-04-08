@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+use App\Jobs\UploadImage;
+
 class HotelsController extends Controller
 {
     /**
@@ -111,8 +113,14 @@ class HotelsController extends Controller
                                 'star_rating'=>$request->input('star_rating'),
                                 'description'=>$request->input('description'),
 
-                                'hotel_thumbnail' => $request->file('hotel_thumbnail')->store('upload', 'public')
+                                // 'hotel_thumbnail' => $request->file('hotel_thumbnail')->store('upload', 'public')
                             ]);
+
+                            if ($request->file('hotel_thumbnail')) {
+                                $request->file('hotel_thumbnail')->move(storage_path() . '/uploads', $fileId = uniqid(true));
+
+                                $this->dispatch(new UploadImage($hotel, $fileId));
+                            }
 
         if($hotelUpdate) {
             return redirect()->route('hotels.show', ['hotel'=> $hotel->id])

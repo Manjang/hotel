@@ -82,6 +82,9 @@ class RoomsController extends Controller
     public function edit(Room $room)
     {
         //
+        $room = Room::find($room->id);
+
+        return view('rooms.edit', ['room'=>$room]);
     }
 
     /**
@@ -94,6 +97,23 @@ class RoomsController extends Controller
     public function update(Request $request, Room $room)
     {
         //
+        $roomUpdate = Room::where('id', $room->id)
+                            ->update([
+                                'name'=>$request->input('name'),
+                                'price'=>$request->input('price'),
+                                'user_id' => Auth::user()->id,
+                                'hotel_id'=>$request->input('hotel_id'),
+                                'facility_id'=>$request->input('facility_id'),
+                                'room_thumbnail' => $request->file('room_thumbnail')->store('upload', 'public')
+                            ]);
+
+        if($roomUpdate) {
+            return redirect()->route('rooms.show', ['room'=> $room->id])
+            ->with('success', 'Room updated successfully');
+        }
+
+        //redirect
+        return back()->withInput();
     }
 
     /**

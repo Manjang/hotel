@@ -29,7 +29,7 @@
 <body>
     <header class="main-header">
         <div class="header-container">
-            <a href="#" class="logo"><img src="{{ asset('images/hotel-logo.png') }}" alt="logo"></a>
+            <a href="{{ url('/') }}" class="logo"><img src="{{ URL('upload/hotel-logo.png') }}" alt="logo"></a>
 
             <ul class="main-header--left">
                 <li class="main-header--left-item">
@@ -52,7 +52,7 @@
                     </select>
                 </li>
                 <li class="main-header--left-item dropdown">
-                    <span class="dropbtn"><img src="assets/images/user.svg" alt="Profile"></span>
+                    <span class="dropbtn"><img src="{{ URL('upload/user.svg') }}" alt="Profile"></span>
                     <ul class="dropdown-content">
                         @guest
                             <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>

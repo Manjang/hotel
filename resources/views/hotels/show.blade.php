@@ -47,7 +47,7 @@
 <body>
 	<header class="main-header">
         <div class="header-container">
-            <a href="#" class="logo"><img src="{{ URL('upload/hotel-logo.png') }}" alt="logo"></a>
+            <a href="{{ url('/') }}" class="logo"><img src="{{ URL('upload/hotel-logo.png') }}" alt="logo"></a>
 
             <ul class="main-header--left">
                 <li class="main-header--left-item">
@@ -447,6 +447,13 @@
 		</div>
 	</footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+	<script type="text/javascript">
+				
+		$( function() {
+		    $( "#tabs" ).tabs();
+		});
+	</script>
 
 	<!-- Add This Social Share -->
 	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a7d63d60282207f"></script>
