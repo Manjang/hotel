@@ -114,7 +114,7 @@
 		<div class="hero-overlay">
 			<a href="{{ url('/') }}" class="logo"><img src="{{ URL('upload/bordered-logo.png') }}" alt="logo"></a>
 
-			<h2 class="tagline">Let's find your next stay in The Gambia</h2>
+			<h2 class="tagline">Book faster. Book smarter. Book hotel.gm</h2>
 
 			<div class="share">
 				<div class="addthis_inline_share_toolbox"></div>

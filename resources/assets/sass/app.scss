@@ -318,6 +318,56 @@ nav {
     letter-spacing: 1px;
 }
 
+
+.card-register,
+.card-login,
+.card-reset {
+	width: 100%;
+    max-width: 300px;
+    margin: auto;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+
+	.card-header {
+	    width: 100%;
+	    max-width: 180px;
+	    margin: 0 auto;
+	    padding: 20px 0 0;
+
+	    a {
+	    	display: block;
+	    }
+	    img {
+	    	width: 100%;
+	    }
+	}	
+}
+
+.login-form,
+.register-form,
+.reset-form {
+
+    .form-group {
+	    max-width: 375px;
+	    width: 100%;
+	    margin-bottom: 12px;
+	}
+
+	input#email, 
+	input#password,
+	input#name,
+	input#password-confirm {
+	    width: 100%;
+	    border-radius: 3px;
+	    border: 2px solid #a2a2a2;
+	    padding: 0 10px;
+	    font-size: 14px;
+	    outline: none;
+	    line-height: 35px;
+	}
+}
+
 @media only screen and (min-width: 480px) {
 	.card {
 		width: calc(50% - 15px);

@@ -312,6 +312,67 @@ nav {
   letter-spacing: 1px;
 }
 
+.card-register,
+.card-login,
+.card-reset {
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-register .card-header,
+.card-login .card-header,
+.card-reset .card-header {
+  width: 100%;
+  max-width: 180px;
+  margin: 0 auto;
+  padding: 20px 0 0;
+}
+
+.card-register .card-header a,
+.card-login .card-header a,
+.card-reset .card-header a {
+  display: block;
+}
+
+.card-register .card-header img,
+.card-login .card-header img,
+.card-reset .card-header img {
+  width: 100%;
+}
+
+.login-form .form-group,
+.register-form .form-group,
+.reset-form .form-group {
+  max-width: 375px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.login-form input#email,
+.login-form input#password,
+.login-form input#name,
+.login-form input#password-confirm,
+.register-form input#email,
+.register-form input#password,
+.register-form input#name,
+.register-form input#password-confirm,
+.reset-form input#email,
+.reset-form input#password,
+.reset-form input#name,
+.reset-form input#password-confirm {
+  width: 100%;
+  border-radius: 3px;
+  border: 2px solid #a2a2a2;
+  padding: 0 10px;
+  font-size: 14px;
+  outline: none;
+  line-height: 35px;
+}
+
 @media only screen and (min-width: 480px) {
   .card {
     width: calc(50% - 15px);
