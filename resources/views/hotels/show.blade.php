@@ -41,8 +41,6 @@
 	<meta property="og:site_name" content="Hotels in Gambia" />
 	<meta property="fb:admins" content="Facebook numberic ID" />
 
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	
 </head>
 <body>
 	<header class="main-header">
@@ -159,11 +157,11 @@
 			</div>
 
 			<div class="quick-search">
-				<form>
+				<form method="GET" action="/search">
 					<fieldset>
 		                <legend>Filter by</legend>
 		                	<div>
-								<input autocomplete="off" maxlength="100" name="keybord-home" placeholder="search hotel by name" type="text">
+								<input autocomplete="off" maxlength="100" name="q" id="searchHotel" value="{{ Request::get('q') }}" placeholder="search hotel by name" type="text">
 								<a class="search-btn" href="#"><img src="{{ URL('upload/search.svg') }}"></a>
 		                	</div>
 
@@ -357,7 +355,7 @@
 					<div class="footer-nav">
 						<h4>Company</h4>
 						<ul class="footer-menu">
-							<li class="footer-menu--item"><a href="#">About Stay.gm</a></li>
+							<li class="footer-menu--item"><a href="#">About hotel.gm</a></li>
 							<li class="footer-menu--item"><a href="#">Spotlight</a></li>
 							<li class="footer-menu--item"><a href="#">Videos</a></li>
 							<li class="footer-menu--item"><a href="#">Artists</a></li>
@@ -439,27 +437,32 @@
 		</div>
 		<div class="footer-bottom">
 			<div class="footer-bottom--wrap">
-				<span>Copyright &copy; 2018 Stay.gm. All Rights Reserved</span>
+				<span>Copyright &copy; 2018 hotel.gm. All Rights Reserved</span>
 				<span><a href="#">Privacy Policy</a></span>
 				<span><a href="#">Terms and Condition</a></span>
 				<span class="powered-by">Powered by: <a href="http://www.quest.gm">Quest</a></span>
 			</div>
 		</div>
 	</footer>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-	<script type="text/javascript">
-				
-		$( function() {
-		    $( "#tabs" ).tabs();
-		});
-	</script>
 
 	<!-- Add This Social Share -->
 	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a7d63d60282207f"></script>
-	<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+	
 
+	
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> 
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> 
+
+	<script type="text/javascript">
+				
+jQuery( document ).ready(function( $ ) {
+  $("#tabs").tabs();
+});
+	</script>
 
 </body>
 </html>

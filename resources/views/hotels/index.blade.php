@@ -40,8 +40,6 @@
 	<meta property="og:description" content="Stay is an online travel agency specialized in hotel bookings, recommendations and reviews within The Gambia. We help customers book hotel rooms online, provide comprehensive help and support to our clients and make the hotel booking process smooth and easy." />
 	<meta property="og:site_name" content="Hotels in Gambia" />
 	<meta property="fb:admins" content="Facebook numberic ID" />
-
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	
 </head>
 <body class="home">
@@ -130,7 +128,16 @@
 			</div>
 
 			<div class="cta">
-				<p>Register your hotel with us for free? <a href="#">Register</a></p>
+				<p>Register your hotel with us for free? 
+
+                    @guest
+                        <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                    @else
+                        @if(Auth::user())
+                            <a href="/hotels/create">{{ __('Add Hotel') }}</a>
+                        @endif
+                    @endguest
+                </p>
 			</div>
 		</div>
 	</div>

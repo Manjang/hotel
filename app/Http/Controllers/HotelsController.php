@@ -11,6 +11,7 @@ use App\Jobs\UploadImage;
 
 class HotelsController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *

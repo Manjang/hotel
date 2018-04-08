@@ -3,22 +3,25 @@
 
 	<title>Hotels | Find &amp; Book Hotels in The Gambia, West Africa</title>
 	<meta name="description" content="Stay is an online travel agency specialized in hotel bookings, recommendations and reviews within The Gambia. We help customers book hotel rooms online, provide comprehensive help and support to our clients and make the hotel booking process smooth and easy." />
-	
+
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
-	<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="http://stay.ourgambia.com/assets/images/bordered-logo.png">
+	<link rel="icon" type="image/png" href="{{ URL('upload/bordered-logo.png') }}">
 
 	<!-- Schema.org markup for Google+ -->
 	<meta itemprop="name" content="Hotels | Find &amp; Book Hotels in The Gambia, West Africa">
 	<meta itemprop="description" content="Stay is an online travel agency specialized in hotel bookings, recommendations and reviews within The Gambia. We help customers book hotel rooms online, provide comprehensive help and support to our clients and make the hotel booking process smooth and easy.">
-	<meta itemprop="image" content="http://stay.ourgambia.com/assets/images/stay.jpg">
+	<meta itemprop="image" content="{{ URL('upload/stay.jpg') }}">
 
 	<!-- Twitter Card data -->
 	<meta name="twitter:card" content="summary_large_image">
@@ -27,47 +30,80 @@
 	<meta name="twitter:description" content="Stay is an online travel agency specialized in hotel bookings, recommendations and reviews within The Gambia. We help customers book hotel rooms online, provide comprehensive help and support to our clients and make the hotel booking process smooth and easy.">
 	<meta name="twitter:creator" content="@GambiaOur">
 	<!-- Twitter summary card with large image must be at least 280x150px -->
-	<meta name="twitter:image:src" content="http://stay.ourgambia.com/assets/images/stay.jpg">
+	<meta name="twitter:image:src" content="{{ URL('upload/stay.jpg') }}">
 
 	<!-- Open Graph data -->
 	<meta property="og:title" content="Hotels | Find &amp; Book Hotels in The Gambia, West Africa" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="http://www.stay.ourgambia.com/" />
-	<meta property="og:image" content="http://stay.ourgambia.com/assets/images/stay.jpg" />
+	<meta property="og:url" content="http://www.hotel.gm/" />
+	<meta property="og:image" content="{{ URL('upload/stay.jpg') }}" />
 	<meta property="og:description" content="Stay is an online travel agency specialized in hotel bookings, recommendations and reviews within The Gambia. We help customers book hotel rooms online, provide comprehensive help and support to our clients and make the hotel booking process smooth and easy." />
 	<meta property="og:site_name" content="Hotels in Gambia" />
 	<meta property="fb:admins" content="Facebook numberic ID" />
-
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	
 </head>
-<body>
+<body class="home">
 	<header class="main-header">
-		<div class="header-container">
-			<a href="{{ url('/') }}" class="logo"><img src="assets/images/hotel-logo.png" alt="logo"></a>
+        <div class="header-container">
+            <a href="{{ url('/') }}" class="logo"><img src="{{ URL('upload/hotel-logo.png') }}" alt="logo"></a>
 
-			<ul class="main-header--left">
-				<li class="main-header--left-item">
-					<select name="select-country" class="main-header--select-country">
-						<optgroup label="top currencies">
-							<option class="option" value="USD">USD - US Dollar</option>
-							<option class="option" value="EUR">EUR - Euro</option>
-							<option class="option" value="GBP">GBP - British Pound</option>
-						</optgroup>
-					</select>
-				</li>
-				<li class="main-header--left-item header-lang">
-					<div class="main-header--left-default">EN</div>
-				</li>
-				<li class="main-header--left-item dropdown">
-					<span class="dropbtn"><img src="assets/images/user.svg" alt="Profile"></span>
-					<ul class="dropdown-content">
-						<li><a href="#">Login</a></li>
-						<li><a href="#">Sign Up</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-	</header>
+            <ul class="main-header--left">
+                <li class="main-header--left-item">
+                    <select name="select-country" class="main-header--select-country">
+                        <optgroup label="top currencies">
+                            <option class="option" value="USD">USD - US Dollar</option>
+                            <option class="option" value="EUR">EUR - Euro</option>
+                            <option class="option" value="GBP">GBP - British Pound</option>
+                        </optgroup>
+                    </select>
+                </li>
+                <li class="main-header--left-item header-lang">
+                    <select name="select-lang" class="main-header--select-country">
+                        <optgroup label="Language">
+                            <option class="option"><a href="/en">EN</a></option>
+                            <option class="option"><a href="/fr">FR</a></option>
+                            <option class="option"><a href="/nl">NL</a></option>
+                            <option class="option"><a href="/ar">AR</a></option>
+                        </optgroup>
+                    </select>
+                </li>
+                <li class="main-header--left-item dropdown">
+                    <span class="dropbtn"><img src="{{ URL('upload/user.svg') }}" alt="Profile"></span>
+                    <ul class="dropdown-content">
+                        @guest
+                            <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                            <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                        @else
+                            <li class="nav-item dropdown">
+                                <a href="#"
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div>
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+
+                                
+                            @if(Auth::user()->role_id == 1)
+                                <div>
+                                    <a href="/hotels/create">Add Hotel</a>
+                                </div>
+                            @endif
+                            </li>
+                        @endguest
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </header>
 
 	<div class="bg-default">
 		<div class="hotels-map">
@@ -121,11 +157,11 @@
 		<aside class="search-filter">
 			<div class="average-rating">
 				<p>Average rating</p>
-				<img src="assets/images/star-on.png" alt="Star on">
-				<img src="assets/images/star-on.png" alt="Star on">
-				<img src="assets/images/star-on.png" alt="Star on">
-				<img src="assets/images/star-on.png" alt="Star on">
-				<img src="assets/images/star-half.png" alt="Star half">
+				<img src="{{ URL('upload/star-on.png') }}" alt="Star on">
+				<img src="{{ URL('upload/star-on.png') }}" alt="Star on">
+				<img src="{{ URL('upload/star-on.png') }}" alt="Star on">
+				<img src="{{ URL('upload/star-on.png') }}" alt="Star on">
+				<img src="{{ URL('upload/star-half.png') }}" alt="Star half">
 			</div>
 
 			<div class="quick-search">

@@ -53,19 +53,19 @@
 		<aside class="search-filter">
 			<div class="average-rating">
 				<p>Average rating</p>
-				<img src="assets/images/star-on.png" alt="Star on">
-				<img src="assets/images/star-on.png" alt="Star on">
-				<img src="assets/images/star-on.png" alt="Star on">
-				<img src="assets/images/star-on.png" alt="Star on">
-				<img src="assets/images/star-half.png" alt="Star half">
+				<img src="{{ URL('upload/star-on.png') }}" alt="Star on">
+				<img src="{{ URL('upload/star-on.png') }}" alt="Star on">
+				<img src="{{ URL('upload/star-on.png') }}" alt="Star on">
+				<img src="{{ URL('upload/star-on.png') }}" alt="Star on">
+				<img src="{{ URL('upload/star-half.png') }}" alt="Star half">
 			</div>
 
 			<div class="quick-search">
-				<form>
+				<form method="GET" action="/search">
 					<fieldset>
 		                <legend>Filter by</legend>
 		                	<div>
-								<input autocomplete="off" maxlength="100" name="keybord-home" placeholder="search hotel by name" type="text">
+								<input autocomplete="off" maxlength="100" name="q" id="searchHotel" value="{{ Request::get('q') }}" placeholder="search hotel by name" type="text">
 								<a class="search-btn" href="#"><img src="assets/images/search.svg"></a>
 		                	</div>
 
@@ -107,7 +107,7 @@
 			</div>
 
 			<a href="http://www.ourgambia.com" target="_blank" class="search-ad">
-				<img src="assets/images/ourgambia.png" alt="Our Gambia Ad">
+				<img src="{{ URL('upload/ourgambia.png') }}" alt="Our Gambia Ad">
 			</a>
 		</aside>
 
@@ -131,28 +131,28 @@
 					<div class="hotel-info">
 						<a href="/hotels/{{ $hotel->id }}" class="hotel-name">{{ $hotel->name }}</a>
 						<div class="hotel-rating">
-							<img src="assets/images/star-on.png" alt="Star on">
-							<img src="assets/images/star-on.png" alt="Star on">
-							<img src="assets/images/star-on.png" alt="Star on">
-							<img src="assets/images/star-on.png" alt="Star on">
-							<img src="assets/images/star-on.png" alt="Star on">
+							<img src="{{ URL('upload/star-on.png') }}" alt="Star on">
+							<img src="{{ URL('upload/star-on.png') }}" alt="Star on">
+							<img src="{{ URL('upload/star-on.png') }}" alt="Star on">
+							<img src="{{ URL('upload/star-on.png') }}" alt="Star on">
+							<img src="{{ URL('upload/star-half.png') }}" alt="Star half">
 						</div>
 						<div class="hotel-contact">{{ $hotel->address }}</div>
 						
 
 						<div class="hotel-image-details">
 							<div class="hotel-image">
-								<a href="/hotels/{{ $hotel->id }}"><img src="assets/images/cococean.jpg"></a>
+								<a href="/hotels/{{ $hotel->id }}"><img src="{{ $hotel->hotel_thumbnail }}"></a>
 							</div>
 							<div class="hotel-details">
 								<div class="hotel-about">
 									<span>Elegant beach resort offering polished suites &amp; villas, plus a spa, 3 restaurants &amp; an outdoor pool.</span>
 									<div class="hotel-facilities">
-										<img src="assets/images/swimmer.svg" alt="Swimmer">
-										<img src="assets/images/trophy.svg" alt="Trophy">
-										<img src="assets/images/massage.svg" alt="Massage">
-										<img src="assets/images/cheers.svg" alt="Cheers">
-										<img src="assets/images/bus.svg" alt="Bus">
+										<img src="{{ URL('upload/swimmer.svg') }}" alt="Swimmer">
+										<img src="{{ URL('upload/trophy.svg') }}" alt="Trophy">
+										<img src="{{ URL('upload/massage.svg') }}" alt="Massage">
+										<img src="{{ URL('upload/cheers.svg') }}" alt="Cheers">
+										<img src="{{ URL('upload/bus.svg') }}" alt="Bus">
 									</div>
 								</div>
 								<div class="hotel-reviews">
@@ -169,15 +169,10 @@
 							<span class="price-info">for 1 night including taxes &amp; fees</span>
 						</div>
 						
-						<div class="book-now"><a href="#" class="booking-btn">Choose Room</a></div>
+						<div class="book-now"><a href="/hotels/{{ $hotel->id }}" class="booking-btn">Choose Room</a></div>
 					</div>
 				</li>
 				@endforeach
-
-
-				<div class="load-more">
-					<a href="#" class="load-more-btn">Load More</a>
-				</div>
 			</ul>
 			@endif
 		</section>
