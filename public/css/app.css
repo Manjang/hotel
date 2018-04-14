@@ -94,6 +94,12 @@ nav {
   object-fit: initial;
 }
 
+@media only screen and (min-width: 1300px) {
+  #hero {
+    height: 700px;
+  }
+}
+
 .hero-overlay {
   position: absolute;
   background: rgba(0, 0, 0, 0.5);
@@ -103,6 +109,15 @@ nav {
   top: 0;
   bottom: 0;
   height: 500px;
+}
+
+@media only screen and (min-width: 1300px) {
+  .hero-overlay {
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: auto;
+    height: auto;
+  }
 }
 
 .hero-overlay .logo img {
@@ -473,7 +488,6 @@ nav {
 
 .landing {
   flex: 1;
-  min-height: 70vh;
   position: relative;
   text-align: center;
   /*max-width: 800px;
@@ -532,6 +546,7 @@ nav {
   border-radius: 0 5px 5px 0;
   padding: 0;
   border-color: transparent;
+  cursor: pointer;
 }
 
 .search-btn img {

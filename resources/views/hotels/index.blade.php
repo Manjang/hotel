@@ -58,12 +58,18 @@
                     </select>
                 </li>
                 <li class="main-header--left-item header-lang">
-                    <select name="select-lang" class="main-header--select-country">
+                    <select name="select-lang" class="main-header--select-country" onchange="location = this.value;">
                         <optgroup label="Language">
-                            <option class="option"><a href="/en">EN</a></option>
-                            <option class="option"><a href="/fr">FR</a></option>
-                            <option class="option"><a href="/nl">NL</a></option>
-                            <option class="option"><a href="/ar">AR</a></option>
+
+                            <option class="option">
+                                {{ Config::get('languages')[App::getLocale()] }}
+                            </option>
+
+                            @foreach (Config::get('languages') as $lang => $language)
+                                @if ($lang != App::getLocale())
+                                    <option class="option" value="{{ route('lang.switch', $lang) }}">{{$language}}</option>
+                                @endif
+                            @endforeach
                         </optgroup>
                     </select>
                 </li>
@@ -114,7 +120,7 @@
 		<div class="hero-overlay">
 			<a href="{{ url('/') }}" class="logo"><img src="{{ URL('upload/bordered-logo.png') }}" alt="logo"></a>
 
-			<h2 class="tagline">Book faster. Book smarter. Book hotel.gm</h2>
+			<h2 class="tagline">{{ __('messages.tagline') }}</h2>
 
 			<div class="share">
 				<div class="addthis_inline_share_toolbox"></div>
@@ -128,10 +134,10 @@
 			</div>
 
 			<div class="cta">
-				<p>Register your hotel with us for free? 
+				<p>{{ __('messages.cta') }} 
 
                     @guest
-                        <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a href="{{ route('register') }}">{{ __('messages.register') }}</a>
                     @else
                         @if(Auth::user())
                             <a href="/hotels/create">{{ __('Add Hotel') }}</a>
@@ -143,18 +149,18 @@
 	</div>
 
 	<div class="recommendations container">
-		<h2 class="subheadline">Our Recommendations</h2>
+		<h2 class="subheadline">{{ __('messages.recommendation') }}</h2>
 		<ul class="recomm">
 			<li class="recomm-stay family">
-				<a href="#">Family</a>
+				<a href="#">{{ __('messages.family') }}</a>
 			</li>
 
 			<li class="recomm-stay romance">
-				<a href="#">Romance</a>
+				<a href="#">{{ __('messages.romance') }}</a>
 			</li>
 
 			<li class="recomm-stay business">
-				<a href="#">Business</a>
+				<a href="#">{{ __('messages.business') }}</a>
 			</li>
 		</ul>
 	</div>
@@ -173,8 +179,8 @@
 							<h2 class="hotel-name">{{ $hotel->name }}</h2>
 							<span>{{ $hotel->address }}</span>
 							<div>
-								<span>125 Reviews</span>
-								<span class="price">$55.00</span>
+								<span>{{ $hotel->reviews->count('id') }} Reviews</span>
+								<span class="price">${{ $hotel->rooms->min('price') }}</span>
 							</div>
 						</div>
 					</a>
@@ -184,7 +190,7 @@
 		</ul>
 
 		<div class="load-more">
-			<a href="#" class="load-more-btn">Load More</a>
+			<a href="#" class="load-more-btn">{{ __('messages.loadMore') }}</a>
 		</div>
 	</div>
 
@@ -196,10 +202,10 @@
                     <div class="footer-nav">
                         <h4>Company</h4>
                         <ul class="footer-menu">
-                            <li class="footer-menu--item"><a href="#">About Stay.gm</a></li>
-                            <li class="footer-menu--item"><a href="#">Spotlight</a></li>
-                            <li class="footer-menu--item"><a href="#">Videos</a></li>
-                            <li class="footer-menu--item"><a href="#">Artists</a></li>
+                            <li class="footer-menu--item"><a href="#">About hotel.gm</a></li>
+                            <li class="footer-menu--item"><a href="#">Places of interest</a></li>
+                            <li class="footer-menu--item"><a href="#">Blog</a></li>
+                            <li class="footer-menu--item"><a href="#">How it works</a></li>
                             <li class="footer-menu--item"><a href="#">Join our team</a></li>
                         </ul>
                     </div>
@@ -278,7 +284,7 @@
         </div>
         <div class="footer-bottom">
             <div class="footer-bottom--wrap">
-                <span>Copyright &copy; 2018 Stay.gm. All Rights Reserved</span>
+                <span>Copyright &copy; {{ date('Y') }} hotel.gm. All Rights Reserved</span>
                 <span><a href="#">Privacy Policy</a></span>
                 <span><a href="#">Terms and Condition</a></span>
                 <span class="powered-by">Powered by: <a href="http://www.quest.gm">Quest</a></span>

@@ -16,20 +16,17 @@ Route::get('/search', 'SearchController@index');
 
 Route::get('/', 'HotelsController@index');
 
-Auth::routes();
-
-Route::get('/{lang?}', function ($lang=null) {
-
-	App::setlocale($lang);
-
-	return view('welcome');
-});
-
-
-
 Route::resource('hotels', 'HotelsController');
 Route::resource('rooms', 'RoomsController');
 Route::resource('facilities', 'FacilitiesController');
 Route::resource('galleries', 'GalleriesController');
 Route::resource('reviews', 'ReviewsController');
-Route::resource('users', 'UsersController');
+
+Auth::routes();
+
+Route::get('{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
+
+Route::middleware(['auth'])->group(function () {
+	Route::resource('users', 'UsersController');
+});
+

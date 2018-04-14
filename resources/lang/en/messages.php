@@ -1,6 +1,7 @@
 <?php
 
     return [
+        "tagline" => "Book faster. Book smarter. Book hotel.gm",
         "headline" => "Let's find your next stay in The Gambia",
         "cta" => "Register your hotel with us for free?",
         "register" => "Register",
@@ -18,6 +19,8 @@
         "termsAndConditions" => "Terms And Conditions",
         "privacyPolicy" => "Privacy Policy",
         "search" => "Search Hotel By Name",
-
+        "family" => "Family",
+        "romance" => "Romance",
+        "business" => "Business",
     ];
 ?>

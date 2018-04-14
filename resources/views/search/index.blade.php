@@ -10,9 +10,9 @@
 			<div class="quick-info">
 				<div>
 					<h1 class="quick-info--name">Search for "{{ Request::get('q') }}"</h1>
-					<h3 class="quick-info--reasons">Tourism in Gambia</h3>
+					<h3 class="quick-info--reasons">Book faster. Book smarter. Book hotel.gm</h3>
 					<div class="quick-info--content">
-						The Gambia, a tiny, tourism-reliant country in West Africa, typically averages about 4,000 visitors a week during its peak month of January. The tourism sector is one of the country's main revenue generators, contributing 20 percent of its budget. It also employs thousands of people. <a href="#">read more</a>
+						Driven by our passion for travel, the hotel.gm team works hard to bring you the cheapest prices on hotels, resorts, unique homes, vacation rentals, and more. Our huge selection of accomodations will let you plan the perfect trip. from adventure travel and backpacking to honeymoons and family vacations, we've got you covered. <a href="#">read more</a>
 					</div>
 				</div>
 
@@ -66,7 +66,7 @@
 		                <legend>Filter by</legend>
 		                	<div>
 								<input autocomplete="off" maxlength="100" name="q" id="searchHotel" value="{{ Request::get('q') }}" placeholder="search hotel by name" type="text">
-								<a class="search-btn" href="#"><img src="assets/images/search.svg"></a>
+								<a class="search-btn" href="#"><img src="{{ URL('upload/search.svg') }}"></a>
 		                	</div>
 
 		                	<div>
