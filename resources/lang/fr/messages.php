@@ -11,5 +11,6 @@
 		"family" => "Famille",
 		"romance" => "Romance",
 		"business" => "Entreprise",
+		"reviews" => "Avis",
 	];
 ?>

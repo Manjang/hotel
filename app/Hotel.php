@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 
+use Illuminate\Support\Facades\Auth;
+
 class Hotel extends Model
 {
     use Searchable;
@@ -42,4 +44,16 @@ class Hotel extends Model
     public function reviews() {
         return $this->morphMany('App\Review', 'reviewable');
     }
+
+    
+    public function likes()
+    {
+        return $this->morphToMany('App\User', 'likeable')->whereDeletedAt(null);
+    }
+    public function getIsLikedAttribute()
+    {
+        $like = $this->likes()->whereUserId(Auth::id())->first();
+        return (! is_null($like)) ? true : false;
+    }
 }
+

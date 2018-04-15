@@ -28,5 +28,8 @@ Route::get('{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLan
 
 Route::middleware(['auth'])->group(function () {
 	Route::resource('users', 'UsersController');
+
+	Route::get('hotels/like/{id}', ['as' => 'hotel.like', 'uses' => 'LikeController@likeHotel']);
+
 });
 

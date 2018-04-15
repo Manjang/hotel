@@ -44,4 +44,10 @@ class User extends Authenticatable
     public function facility() {
         return $this->belongsTo('App\Facility');
     }
+
+    
+    public function likedHotels() {
+        return $this->morphedByMany('App\Hotel', 'likeable')->whereDeletedAt(null);
+    }
+
 }

@@ -115,7 +115,17 @@
 				</div>
 				
 				<div>
-					<span><img src="{{ URL('upload/like.svg') }}" alt="Hotel likes"> 142 likes</span>
+					<span>
+						<img src="{{ URL('upload/like.svg') }}" alt="Hotel likes">
+						
+					    <h2>{{ $hotel->title }} <small>{{ $hotel->likes()->count() }} Likes </small></h2>
+
+                        @if ($hotel->isLiked)
+                            <a href="{{ route('hotel.like', $hotel->id) }}"> -- Unlike </a>
+                        @else
+                            <a href="{{ route('hotel.like', $hotel->id) }}"> -- Like</a>
+                        @endif
+					</span>
 				</div>
 			</div>
 

@@ -22,5 +22,6 @@
         "family" => "Family",
         "romance" => "Romance",
         "business" => "Business",
+        "reviews" => "Reviews",
     ];
 ?>
