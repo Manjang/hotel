@@ -16,6 +16,7 @@ Route::get('/search', 'SearchController@index');
 
 Route::get('/', 'HotelsController@index');
 
+
 Route::resource('hotels', 'HotelsController');
 Route::resource('rooms', 'RoomsController');
 Route::resource('facilities', 'FacilitiesController');

@@ -58,12 +58,18 @@
                     </select>
                 </li>
                 <li class="main-header--left-item header-lang">
-                    <select name="select-lang" class="main-header--select-country">
+                    <select name="select-lang" class="main-header--select-country" onchange="location = this.value;">
                         <optgroup label="Language">
-                            <option class="option"><a href="/en">EN</a></option>
-                            <option class="option"><a href="/fr">FR</a></option>
-                            <option class="option"><a href="/nl">NL</a></option>
-                            <option class="option"><a href="/ar">AR</a></option>
+
+                            <option class="option">
+                                {{ Config::get('languages')[App::getLocale()] }}
+                            </option>
+
+                            @foreach (Config::get('languages') as $lang => $language)
+                                @if ($lang != App::getLocale())
+                                    <option class="option" value="{{ route('lang.switch', $lang) }}">{{$language}}</option>
+                                @endif
+                            @endforeach
                         </optgroup>
                     </select>
                 </li>
@@ -241,7 +247,7 @@
 
 			<div class="search-box">
 				<ul>
-					<span>Why book a stay with Coco Ocean Resort &amp; Spa</span>
+					<span>{{ __('messages.headline') }}</span>
 					<li>Free WiFi</li>
 					<li>Parking</li>
 					<li>Swimming Pool</li>

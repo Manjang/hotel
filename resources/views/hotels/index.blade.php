@@ -168,30 +168,31 @@
 	<div class="top-picks container">
 		<h2 class="subheadline">{{ __('messages.headline') }}</h2>
 
-		<ul class="cards">
-            <?php $count = 0; ?>
-			@foreach($hotels as $hotel)
-                <?php if ($count == 8) break; ?>
-				<li class="card">
-					<a href="/hotels/{{ $hotel->id }}">
-						<img src="{{ URL($hotel->hotel_thumbnail) }}">
-						<div class="card-meta">
-							<h2 class="hotel-name">{{ $hotel->name }}</h2>
-							<span>{{ $hotel->address }}</span>
-							<div>
-								<span>{{ $hotel->reviews->count('id') }} Reviews</span>
-								<span class="price">${{ $hotel->rooms->min('price') }}</span>
-							</div>
-						</div>
-					</a>
-				</li>
-                <?php $count++; ?>
-			@endforeach
-		</ul>
+        <div class="infinite-scroll">
+    		<ul class="cards">
+    			@foreach($hotels as $hotel)
+    				<li class="card">
+    					<a href="/hotels/{{ $hotel->id }}">
+    						<img src="{{ URL($hotel->hotel_thumbnail) }}">
+    						<div class="card-meta">
+    							<h2 class="hotel-name">{{ $hotel->name }}</h2>
+    							<span>{{ $hotel->address }}</span>
+    							<div>
+    								<span>{{ $hotel->reviews->count('id') }} {{ __('messages.reviews') }}</span>
+    								<span class="price">${{ $hotel->rooms->min('price') }}</span>
+    							</div>
+    						</div>
+    					</a>
+    				</li>
+    			@endforeach
+    		</ul>
 
-		<div class="load-more">
+            {{ $hotels->links() }}
+        </div>
+
+		<!-- <div class="load-more">
 			<a href="#" class="load-more-btn">{{ __('messages.loadMore') }}</a>
-		</div>
+		</div> -->
 	</div>
 
 
@@ -291,6 +292,30 @@
             </div>
         </div>
     </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    
+    <script type="text/javascript">
+        
+        $('ul.pagination').hide();
+        $(function() {
+            $('document').ready(function(){
+            $('.infinite-scroll').jscroll({
+                autoTrigger: true,
+                loadingHtml: '<img class="center-block" src="{{ URL('/upload/loader.gif') }}" alt="Loading..." />',
+                padding: 0,
+                nextSelector: '.pagination li.active + li a',
+                contentSelector: 'div.infinite-scroll',
+                callback: function() {
+                    $('ul.pagination').remove();
+                }
+            });
+        });
+        });
+    </script>
+
+
 
     <!-- Add This Social Share -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a7d63d60282207f"></script>

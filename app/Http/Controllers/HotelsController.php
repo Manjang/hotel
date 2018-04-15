@@ -22,6 +22,8 @@ class HotelsController extends Controller
         //
         $hotels = Hotel::all();
 
+        $hotels = Hotel::paginate(8);
+
         return view('hotels.index', ['hotels' => $hotels]);
     }
 
